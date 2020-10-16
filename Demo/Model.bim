@@ -1,0 +1,391 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1500,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "DESKTOP-TP27DNG",
+            "database": "BANKDWH"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {},
+        "credential": {
+          "AuthenticationKind": "ServiceAccount",
+          "kind": "SQL",
+          "path": "desktop-tp27dng;BANKDWH",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimKunden",
+        "columns": [
+          {
+            "name": "ID",
+            "dataType": "int64",
+            "sourceColumn": "ID"
+          },
+          {
+            "name": "KundenNr",
+            "dataType": "int64",
+            "sourceColumn": "KundenNr"
+          },
+          {
+            "name": "Nachname",
+            "dataType": "string",
+            "sourceColumn": "Nachname"
+          },
+          {
+            "name": "Bankleitzahl",
+            "dataType": "int64",
+            "sourceColumn": "Bankleitzahl"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    dbo_DimKunden = Source{[Schema=\"dbo\",Item=\"DimKunden\"]}[Data]",
+                "in",
+                "    dbo_DimKunden"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactBuchungen",
+        "columns": [
+          {
+            "name": "ID",
+            "dataType": "int64",
+            "sourceColumn": "ID"
+          },
+          {
+            "name": "BuchungsNr",
+            "dataType": "int64",
+            "sourceColumn": "BuchungsNr"
+          },
+          {
+            "name": "KontoNr",
+            "dataType": "int64",
+            "sourceColumn": "KontoNr"
+          },
+          {
+            "name": "Betrag",
+            "dataType": "int64",
+            "sourceColumn": "Betrag"
+          },
+          {
+            "name": "Buchungsdatum",
+            "dataType": "dateTime",
+            "sourceColumn": "Buchungsdatum"
+          },
+          {
+            "name": "KundenNr",
+            "dataType": "int64",
+            "sourceColumn": "KundenNr"
+          },
+          {
+            "name": "Bankleitzahl",
+            "dataType": "int64",
+            "sourceColumn": "Bankleitzahl"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    dbo_FactBuchungen = Source{[Schema=\"dbo\",Item=\"FactBuchungen\"]}[Data]",
+                "in",
+                "    dbo_FactBuchungen"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Gesamtbetrag",
+            "expression": "SUM([Betrag])"
+          },
+          {
+            "name": "Saldo",
+            "expression": [
+              "var maxdate = MAX(DimDates[Date])",
+              "return CALCULATE([Gesamtbetrag], DimDates[Date] <= maxdate)"
+            ]
+          },
+          {
+            "name": "User",
+            "expression": "USERNAME()"
+          }
+        ]
+      },
+      {
+        "name": "DimDates",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "Date",
+            "dataType": "dateTime",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Date]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Year",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Year]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "QuarterNumber",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[QuarterNumber]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Month Number",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Month Number]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Month",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Month]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Week Day Number",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Week Day Number]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Week Day",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Week Day]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Year Month Number",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Year Month Number]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Year Month Format",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Year Month Format]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Year Quarter Number",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Year Quarter Number]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "Year Quarter",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "[Year Quarter]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": [
+                " VAR MinYear = YEAR (MIN('FactBuchungen'[BUCHUNGSDATUM]))",
+                "VAR MaxYear = YEAR(MAX('FactBuchungen'[BUCHUNGSDATUM]))",
+                "Return",
+                "ADDCOLUMNS( ",
+                "    Filter(     ",
+                "    CALENDARAUTO(),",
+                "    YEAR([Date]) >=MinYear &&",
+                "    YEAR([Date])<= MaxYear",
+                "),",
+                "\"Year\", YEAR ([Date]),",
+                "\"QuarterNumber\", INT(FORMAT([Date],\"q\")),",
+                "\"Month Number\", MONTH([Date]),",
+                "\"Month\", FORMAT([Date], \"mmmm\"),",
+                "\"Week Day Number\", WEEKDAY([Date]),",
+                "\"Week Day\", FORMAT([Date], \"dddd\"),",
+                "\"Year Month Number\", YEAR([Date]) * 100 + MONTH([Date]),",
+                "\"Year Month Format\", FORMAT([Date],\"mmmm\") & \" \" & YEAR([Date]),",
+                "\"Year Quarter Number\", YEAR([Date]) * 100 + INT(FORMAT([Date],\"q\")),",
+                "",
+                "\"Year Quarter\", \"Q\" & FORMAT([Date], \"q\") & \"-\" & YEAR([Date])",
+                ")"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "MitarbeiterPermission",
+        "columns": [
+          {
+            "name": "ID",
+            "dataType": "int64",
+            "sourceColumn": "ID"
+          },
+          {
+            "name": "Nachname",
+            "dataType": "string",
+            "sourceColumn": "Nachname"
+          },
+          {
+            "name": "Bankleitzahl",
+            "dataType": "int64",
+            "sourceColumn": "Bankleitzahl"
+          },
+          {
+            "name": "UserName",
+            "dataType": "string",
+            "sourceColumn": "UserName"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    dbo_Mitarbeiter = Source{[Schema=\"dbo\",Item=\"MitarbeiterPermission\"]}[Data]",
+                "in",
+                "    dbo_Mitarbeiter"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimBuchungskonten",
+        "columns": [
+          {
+            "name": "ID",
+            "dataType": "int64",
+            "sourceColumn": "ID"
+          },
+          {
+            "name": "Bezeichnung",
+            "dataType": "string",
+            "sourceColumn": "Bezeichnung"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    dbo_DimBuchungskonten = Source{[Schema=\"dbo\",Item=\"DimBuchungskonten\"]}[Data]",
+                "in",
+                "    dbo_DimBuchungskonten"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "35ffe55a-db0b-460b-9f2c-da044938be26",
+        "fromTable": "FactBuchungen",
+        "fromColumn": "KundenNr",
+        "toTable": "DimKunden",
+        "toColumn": "ID"
+      },
+      {
+        "name": "2d96f4c8-d28d-48bb-a6de-549ac019a6e2",
+        "fromTable": "FactBuchungen",
+        "fromColumn": "Buchungsdatum",
+        "toTable": "DimDates",
+        "toColumn": "Date"
+      },
+      {
+        "name": "553d71e4-4f71-4304-b527-65ca6b9e848e",
+        "fromTable": "FactBuchungen",
+        "fromColumn": "KontoNr",
+        "toTable": "DimBuchungskonten",
+        "toColumn": "ID"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Bankangestellte",
+        "modelPermission": "read",
+        "tablePermissions": [
+          {
+            "name": "FactBuchungen",
+            "filterExpression": "[Bankleitzahl] = LOOKUPVALUE(MitarbeiterPermission[Bankleitzahl],MitarbeiterPermission[UserName],USERNAME())"
+          },
+          {
+            "name": "DimKunden",
+            "filterExpression": "[Bankleitzahl] = LOOKUPVALUE(MitarbeiterPermission[Bankleitzahl],MitarbeiterPermission[UserName],USERNAME())"
+          },
+          {
+            "name": "MitarbeiterPermission",
+            "filterExpression": "False()"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "600"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
