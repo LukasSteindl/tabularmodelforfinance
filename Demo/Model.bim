@@ -6,7 +6,7 @@
     "dataSources": [
       {
         "type": "structured",
-        "name": "SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH",
+        "name": "SQL/DESKTOP-TP27DNG;BANKDWH",
         "connectionDetails": {
           "protocol": "tds",
           "address": {
@@ -58,7 +58,7 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;BANKDWH\",",
                 "    dbo_DimKunden = Source{[Schema=\"dbo\",Item=\"DimKunden\"]}[Data]",
                 "in",
                 "    dbo_DimKunden"
@@ -114,7 +114,7 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;BANKDWH\",",
                 "    dbo_FactBuchungen = Source{[Schema=\"dbo\",Item=\"FactBuchungen\"]}[Data]",
                 "in",
                 "    dbo_FactBuchungen"
@@ -296,7 +296,7 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;BANKDWH\",",
                 "    dbo_Mitarbeiter = Source{[Schema=\"dbo\",Item=\"MitarbeiterPermission\"]}[Data]",
                 "in",
                 "    dbo_Mitarbeiter"
@@ -327,7 +327,7 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/DESKTOP-TP27DNG;RLB_BGLD_NÖ_DWH\",",
+                "    Source = #\"SQL/DESKTOP-TP27DNG;BANKDWH\",",
                 "    dbo_DimBuchungskonten = Source{[Schema=\"dbo\",Item=\"DimBuchungskonten\"]}[Data]",
                 "in",
                 "    dbo_DimBuchungskonten"
