@@ -160,7 +160,8 @@ Select SUM(Betrag) from Buchungen where KundenNr = 1 and KontoNr = 5
 go
 
 
-
+use master
+go
 Drop Database if exists BankDWH 
 go
 Create Database BankDWH
@@ -207,4 +208,4 @@ Select * from FactBuchungen
 Drop Table if exists MitarbeiterPermission
 go
 Create Table MitarbeiterPermission (ID int primary key identity, Nachname varchar(255), Bankleitzahl int, UserName varchar(255))
-Insert Into MitarbeiterPermission values ('Steindl',33078,'DESKTOP-TP27DNG\lukas'), ('Hirscher',32073,'DESKTOP-TP27DNG\hirscher')
+Insert Into MitarbeiterPermission values ('Steindl',33078,'europe\lukast'), ('Hirscher',32073,'DESKTOP-TP27DNG\hirscher')
