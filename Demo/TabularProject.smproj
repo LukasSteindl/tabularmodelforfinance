@@ -20,7 +20,7 @@
     <DeploymentOptionProcessing>Default</DeploymentOptionProcessing>
     <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
     <DeploymentOptionADALCache>Default</DeploymentOptionADALCache>
-    <DeploymentOptionDirectQueryMode>InMemory</DeploymentOptionDirectQueryMode>
+    <DeploymentOptionDirectQueryMode>DirectQuery</DeploymentOptionDirectQueryMode>
     <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == '' ">

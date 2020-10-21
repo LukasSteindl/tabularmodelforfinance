@@ -27,6 +27,7 @@
     "tables": [
       {
         "name": "DimKunden",
+        "isHidden": true,
         "columns": [
           {
             "name": "ID",
