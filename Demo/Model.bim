@@ -105,7 +105,7 @@
           },
           {
             "type": "calculated",
-            "name": "Calculated Column 1",
+            "name": "Ort",
             "dataType": "string",
             "isDataTypeInferred": true,
             "expression": " if ([Bankleitzahl] = 33078, \"Purbach\",\"Bruck\")"
