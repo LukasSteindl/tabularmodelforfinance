@@ -10,16 +10,15 @@
         "connectionDetails": {
           "protocol": "tds",
           "address": {
-            "server": "DESKTOP-TP27DNG",
+            "server": "localhost",
             "database": "BANKDWH"
           },
           "authentication": null,
           "query": null
         },
+        "options": {},
         "credential": {
           "AuthenticationKind": "ServiceAccount",
-          "kind": "SQL",
-          "path": "desktop-tp27dng;BANKDWH",
           "EncryptConnection": false
         }
       }

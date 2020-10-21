@@ -1,3 +1,4 @@
+--dieses script als sa (pw demo) und nicht als lukast ausführen!
 use master
 Drop Database if exists BankPurbach
 Go
@@ -160,7 +161,8 @@ Select SUM(Betrag) from Buchungen where KundenNr = 1 and KontoNr = 5
 go
 
 
-
+use master
+go
 Drop Database if exists BankDWH 
 go
 Create Database BankDWH
@@ -207,4 +209,42 @@ Select * from FactBuchungen
 Drop Table if exists MitarbeiterPermission
 go
 Create Table MitarbeiterPermission (ID int primary key identity, Nachname varchar(255), Bankleitzahl int, UserName varchar(255))
-Insert Into MitarbeiterPermission values ('Steindl',33078,'DESKTOP-TP27DNG\lukas'), ('Hirscher',32073,'DESKTOP-TP27DNG\hirscher')
+Insert Into MitarbeiterPermission values ('Steindl',33078,'europe\lukast'), ('Hirscher',32073,'DESKTOP-TP27DNG\hirscher')
+
+
+
+use BankDWH
+Select DATABASE_PRINCIPAL_ID(),USER_NAME()
+
+use BankDWH
+GO
+CREATE SCHEMA Security;  
+GO  
+
+go
+Create FUNCTION Security.fn_securitypredicate(@BLZ AS int)  
+    RETURNS TABLE  
+WITH SCHEMABINDING  
+AS  
+    RETURN 
+	
+	SELECT 1 as 'fn_securitypredicate' where exists 
+	(Select 1 from dbo.MitarbeiterPermission 
+	where UserName = USER_NAME() and Bankleitzahl = @BLZ
+	or USER_NAME() = 'dbo'
+	)
+;
+GO
+
+use BankDWH
+GO
+Drop Security Policy if exists OnlyWithSameBLZ
+go
+CREATE SECURITY POLICY OnlyWithSameBLZ
+ADD FILTER PREDICATE Security.fn_securitypredicate(Bankleitzahl)
+ON dbo.FactBuchungen  
+WITH (STATE = ON);
+
+--Demo: Als lukast und als admin anmelden und folgende Abfrage vergleichen.
+use BankDWH
+Select * from FactBuchungen
