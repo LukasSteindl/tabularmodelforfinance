@@ -102,6 +102,13 @@
             "name": "Bankleitzahl",
             "dataType": "int64",
             "sourceColumn": "Bankleitzahl"
+          },
+          {
+            "type": "calculated",
+            "name": "Calculated Column 1",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": " if ([Bankleitzahl] = 33078, \"Purbach\",\"Bruck\")"
           }
         ],
         "partitions": [
