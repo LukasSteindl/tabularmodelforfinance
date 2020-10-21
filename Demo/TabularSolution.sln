@@ -5,14 +5,39 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6870E480-7721-4708-BFB8-9AE898AA21B3}") = "TabularProject", "TabularProject.smproj", "{8CE414BB-95B2-4C99-9E03-51BA72086E22}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ReportProject", "..\ReportProject\ReportProject.rptproj", "{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		DebugLocal|x86 = DebugLocal|x86
 		Development|x86 = Development|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Debug|x86.ActiveCfg = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Debug|x86.Build.0 = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Debug|x86.Deploy.0 = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.DebugLocal|x86.ActiveCfg = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.DebugLocal|x86.Build.0 = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.DebugLocal|x86.Deploy.0 = Development|x86
 		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Development|x86.ActiveCfg = Development|x86
 		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Development|x86.Build.0 = Development|x86
 		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Development|x86.Deploy.0 = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Release|x86.ActiveCfg = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Release|x86.Build.0 = Development|x86
+		{8CE414BB-95B2-4C99-9E03-51BA72086E22}.Release|x86.Deploy.0 = Development|x86
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Debug|x86.ActiveCfg = Debug
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Debug|x86.Build.0 = Debug
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Debug|x86.Deploy.0 = Debug
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.DebugLocal|x86.ActiveCfg = DebugLocal
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.DebugLocal|x86.Build.0 = DebugLocal
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Development|x86.ActiveCfg = Debug
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Development|x86.Build.0 = Debug
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Development|x86.Deploy.0 = Debug
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Release|x86.ActiveCfg = Release
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Release|x86.Build.0 = Release
+		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Release|x86.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

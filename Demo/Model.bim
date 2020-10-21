@@ -149,7 +149,23 @@
           },
           {
             "name": "Eigenkapital",
-            "expression": " CALCULATE([Gesamtbetrag],'DimBuchungskonten'[Bezeichnung] = \"Eigenkapital\")*-1"
+            "expression": " CALCULATE([Saldo],'DimBuchungskonten'[Bezeichnung] = \"Eigenkapital\")*-1"
+          },
+          {
+            "name": "Barmittel",
+            "expression": " CALCULATE([Saldo],'DimBuchungskonten'[Bezeichnung] = \"Barmittel\")"
+          },
+          {
+            "name": "EKLY",
+            "expression": [
+              " CALCULATE([Eigenkapital],PREVIOUSYEAR('DimDates'[Date]))",
+              ""
+            ]
+          },
+          {
+            "name": "YOYEK",
+            "expression": "DIVIDE([Eigenkapital]-[EKLY],[EKLY])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
           }
         ]
       },
