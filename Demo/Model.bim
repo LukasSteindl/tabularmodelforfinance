@@ -3,6 +3,7 @@
   "compatibilityLevel": 1500,
   "model": {
     "culture": "en-US",
+    "discourageImplicitMeasures": true,
     "dataSources": [
       {
         "type": "structured",
@@ -361,6 +362,68 @@
                 "in",
                 "    dbo_DimBuchungskonten"
               ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "TimeIntelligence",
+        "calculationGroup": {
+          "calculationItems": [
+            {
+              "name": "Current",
+              "expression": "SELECTEDMEASURE()"
+            },
+            {
+              "name": "LY",
+              "expression": "CALCULATE(SELECTEDMEASURE(),PREVIOUSYEAR('DimDates'[Date]))"
+            }
+          ]
+        },
+        "columns": [
+          {
+            "name": "Formula",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculationGroup 1",
+            "source": {
+              "type": "calculationGroup"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Formatting",
+        "calculationGroup": {
+          "precedence": 1,
+          "calculationItems": [
+            {
+              "name": "ApplyFormat",
+              "expression": [
+                "SWITCH(TRUE(), ",
+                "    SELECTEDMEASURENAME() = \"Eigenkapital\", FORMAT(SELECTEDMEASURE(),\"€###,\"),",
+                "    FORMAT(SELECTEDMEASURE(),\"###.00\")",
+                ")"
+              ]
+            }
+          ]
+        },
+        "columns": [
+          {
+            "name": "Formula",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculationGroup 1",
+            "source": {
+              "type": "calculationGroup"
             }
           }
         ]
