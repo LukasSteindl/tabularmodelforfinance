@@ -7,6 +7,8 @@ Project("{6870E480-7721-4708-BFB8-9AE898AA21B3}") = "TabularProject", "TabularPr
 EndProject
 Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ReportProject", "..\ReportProject\ReportProject.rptproj", "{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}"
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "IntegrationProject", "..\IntegrationProject\IntegrationProject.dtproj", "{EA5202C3-0AC6-46D1-9D25-760C508BBB27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -38,6 +40,14 @@ Global
 		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Release|x86.ActiveCfg = Release
 		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Release|x86.Build.0 = Release
 		{85E20728-676E-4CDD-9A9B-57FAC8DB2ADA}.Release|x86.Deploy.0 = Release
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.Debug|x86.ActiveCfg = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.Debug|x86.Build.0 = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.DebugLocal|x86.ActiveCfg = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.DebugLocal|x86.Build.0 = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.Development|x86.ActiveCfg = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.Development|x86.Build.0 = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.Release|x86.ActiveCfg = Development
+		{EA5202C3-0AC6-46D1-9D25-760C508BBB27}.Release|x86.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
